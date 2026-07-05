@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#14171C">
+<meta name="description" content="SAME GLOBAL SERVICES — Gestion de stock et de vente multi-produits, avec calcul automatique du PMP, des marges et de la TVA. Fonctionne hors connexion.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SAME GLOBAL SERVICES">
+<meta name="mobile-web-app-capable" content="yes">
+<title>SAME GLOBAL SERVICES — Gestion de stock et vente</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <p class="brand">SAME GLOBAL SERVICES</p>
+    <p class="eyebrow" id="eyebrow-date">—</p>
+    <h1 id="page-title">Tableau de bord</h1>
+    <p class="sub" id="page-sub">Gestion de stock &amp; de ventes</p>
+  </header>
+  <main id="view"></main>
+  <nav class="tabbar">
+    <button class="tab" data-tab="dashboard" onclick="setTab('dashboard')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13h4V21H3zM10 9h4V21h-4zM17 5h4V21h-4z"/></svg>
+      Accueil
+    </button>
+    <button class="tab" data-tab="products" onclick="setTab('products')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7l1.5-3h15L21 7M3 7v13a1 1 0 001 1h16a1 1 0 001-1V7M3 7h18M9 11a3 3 0 006 0"/></svg>
+      Produits
+    </button>
+    <button class="tab" data-tab="stock" onclick="setTab('stock')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v8"/></svg>
+      Stock
+    </button>
+    <button class="tab" data-tab="sales" onclick="setTab('sales')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h2l2.4 12.2a2 2 0 002 1.8h8.2a2 2 0 002-1.8L21 8H6"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>
+      Ventes
+    </button>
+  </nav>
+</div>
+<div id="modal-root"></div>
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW registration failed', err));
+    });
+  }
+</script>
+</body>
+</html>
